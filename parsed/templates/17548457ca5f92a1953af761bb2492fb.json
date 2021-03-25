@@ -1,0 +1,1 @@
+{"components/common/alert-info":"<div class=\"alertBox alertBox--info\">\n    <div class=\"alertBox-column alertBox-icon\">\n        <svg class=\"icon\"><use xlink:href=\"#icon-bf-creditcard\"></use></svg>\n    </div>\n    <div class=\"alertBox-column alertBox-message\">\n        {{{this}}}\n    </div>\n</div>\n"}

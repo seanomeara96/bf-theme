@@ -1,0 +1,38 @@
+<nav>
+    {{#if theme_settings.show_subcategories_menu}}
+        {{> components/papa-supermarket/sidebar/subcategories-menu}}
+    {{else}}
+        {{#if theme_settings.layout '===' 'left-sidebar'}}
+            {{> components/papa-supermarket/sidebar/categories-menu}}
+        {{/if}}
+        
+        {{#if category.subcategories}}
+        <div class="sidebarBlock sidebarBlock--mobileCollapsible">
+            <a class="sidebarBlock-heading is-open" href="#" data-collapsible="#categories-navList" aria-expanded="true">
+                {{category.name}}
+                <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+            </a>
+            <ul id="categories-navList" class="bf__navList is-open" aria-hidden="false">
+                {{#each category.subcategories}}
+                <li class="navList-item">
+                    <a class="navList-action" data-instantload href="{{url}}" title="{{name}}">{{name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+    {{/if}}
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{#if theme_settings.show_shop_by_price}}
+            {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        {{/if}}
+        {{#if shop_by_brand}}
+            {{#if theme_settings.max_shop_by_brand '>' 9}}
+                {{> components/papa-supermarket/sidebar/brands}}
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</nav>

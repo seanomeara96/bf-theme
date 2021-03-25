@@ -1,0 +1,15 @@
+<ul class="bf__footerIcons">
+    <li class="_item"><img class="lazyload" width="45" height="45" data-sizes="45x45" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  data-src="{{cdn 'img/beautyfeatures/irish-logo-small-white.svg'}}" alt="irish"></li>
+    <li class="_item"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  data-src="{{cdn 'img/beautyfeatures/footer-logo-ecommerce-europe.png'}}" alt="ecommerce europe"></li>
+    <li class="_item"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  data-src="{{cdn 'img/beautyfeatures/footer-logo-trustmark.png'}}" alt="trustmark"></li>
+    <li class="_item"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  data-src="{{cdn 'img/beautyfeatures/footer-logo-paypal.png'}}" alt="paypal"></li>
+    <li class="_item"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  data-src="{{cdn 'img/beautyfeatures/footer-logo-visa.png'}}" alt="visa"></li>
+
+    {{#if theme_settings.show_geotrust_ssl_seal}}
+        <li class="_item">
+            <div class="footer-geotrust-ssl-seal">
+                {{> components/common/geotrust-ssl-seal}}
+            </div>
+        </li>
+    {{/if}}
+</ul>

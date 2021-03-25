@@ -1,0 +1,21 @@
+body {
+	-webkit-font-smoothing: $font-smoothing;
+}
+
+[aria-selected],
+[aria-hidden] {
+	@include breakpoint("medium") {
+		outline: none;
+	}
+}
+
+.emthemesModez-categoryPage-mainImage,
+.emthemesModez-brandPage-mainImage {
+	display: block;
+	margin: 0 auto spacing("single");
+	text-align: center;
+}
+
+.u-hiddenVisually {
+	margin: 0 !important;
+}

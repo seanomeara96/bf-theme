@@ -1,0 +1,79 @@
+---
+cart: true
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.max_shop_by_brand}}
+---
+{{#partial "page"}}
+<div class="page">
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+    <div class="page-sidebar">
+        {{> components/papa-supermarket/home/sidebar}}
+    </div>
+    {{/if}}
+
+    <main class="page-content" data-cart>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        
+        {{> components/cart/page-title}}
+
+        <div class="loadingOverlay"></div>
+
+        {{#if cart.items.length}}
+            <div class="bf__cart">
+                <div class="_left">
+                    <div data-cart-status>
+                        {{> components/cart/status-messages}}
+                    </div>
+                    <div class="cart-contentWrapper" data-cart-content>
+                        {{> components/cart/content}}
+                    </div>
+                    <p class="bf__cart-couponMsg u-hideMobile u-hideTablet">{{lang 'cart.coupons.coupon_msg'}}</p>
+                </div>
+                <div class="_right">
+                    <div class="cart-totalsWrapper" data-cart-totals>
+                        {{> components/cart/totals}}
+                    </div>
+        
+                    {{#if cart.show_primary_checkout_button}}
+                        <div class="cart-actions">
+                            <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                            {{#if cart.show_multiple_address_shipping}}
+                                <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                                    {{lang 'cart.preview.checkout_multiple'}}
+                                </a>
+                            {{/if}}
+                        </div>
+                    {{else}}
+                        <div class="cart-actions">
+                            <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                        </div>
+                    {{/if}}
+        
+                    {{#if cart.additional_checkout_buttons}}
+                        <div class="cart-additionalCheckoutButtons">
+                            {{#each cart.additional_checkout_buttons}}
+                                {{{this}}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+
+                    {{> components/beautyfeatures/product-3icons}}
+                </div>
+            </div>
+            <p class="bf__cart-couponMsg u-hideDesktop">{{lang 'cart.coupons.coupon_msg'}}</p>
+        {{else}}
+            <h3 class="cart-emptyText">{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+
+        {{{snippet 'cart'}}}
+    </main>
+</div>
+{{/partial}}
+{{> layout/base}}

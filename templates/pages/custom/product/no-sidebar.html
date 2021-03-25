@@ -1,0 +1,57 @@
+{{#if (merge theme_settings layout=default)}}{{/if}}
+{{#partial "page"}}
+<div class="page">
+<main class="page-content">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="http://schema.org/Product" class="productView-scope">
+        {{> components/products/product-view schema=true}}
+
+        {{{region name="product_below_content"}}}
+
+        {{#unless theme_settings.show_video_tabs}}
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+        {{/unless}}
+
+        {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true) (if product.reviews.total '>' 0)}}
+            <div class="productView-reviewTabs">
+                <ul class="tabs" data-tab role="tablist">
+                    <li class="tab is-active" role="presentational">
+                        <a class="tab-title" href="#tab-reviews" role="tab" tabindex="0" aria-selected="true" controls="tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+                    </li>
+                </ul>
+                <div class="tabs-contents">
+                    <div role="tabpanel" aria-hidden="false" class="tab-content is-active" id="tab-reviews">
+                        <h2 class="page-heading _hasToggle">{{lang 'products.reviews.header' total=product.reviews.total}}</h2>
+                        <button class="button button--toggle is-open" data-toggle="ih__reviews-{{product.id}}">
+                            <span class="on">Hide <svg class="icon"><use xlink:href="#icon-close"></use></svg></span>
+                            <span class="off">Show <svg class="icon"><use xlink:href="#icon-add"></use></svg></span>
+                        </button>
+                        <div class="productView-reviewTabs-tabContent is-open" id="ih__reviews-{{product.id}}">
+                            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/all}}
+    </div>
+
+    {{> components/yotpo/main-widget}}
+
+    <div class="productView-productTabs">
+        {{> components/products/tabs}}
+    </div>
+</main>
+</div>
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

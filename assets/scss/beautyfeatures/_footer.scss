@@ -1,0 +1,16 @@
+.bf__footerIcons {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    margin: 0 (-(spacing("half")));
+    ._item {
+        display: inline-block;
+        padding: spacing("half");
+    }
+    img {
+        @media (max-width: screenSize("medium") - 1px) {
+            max-height: 45px;
+        }
+    }
+}

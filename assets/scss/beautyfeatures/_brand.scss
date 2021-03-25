@@ -1,0 +1,19 @@
+.brandGrid {
+    .brand {
+        padding: spacing("quarter");
+
+        @include breakpoint("medium") {
+            padding: $column-gutter / 2;
+        }
+
+        .card {
+            border: container("border");
+            border-radius: $global-radius;
+            padding: spacing("half");
+            margin: 0;
+        }
+        .card-body {
+            display: block;
+        }
+    }
+}

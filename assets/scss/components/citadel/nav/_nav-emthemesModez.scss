@@ -1,0 +1,66 @@
+
+.navList-subSection .navList-item {
+	margin-left: spacing("half");
+
+	&:before {
+		content: '-';
+		float: left;
+		margin-left: -(spacing("half"));
+	}
+}
+
+.navBar--sub {
+	margin-bottom: spacing("single");
+
+	.navBar-item {
+		&.is-active {
+			font-weight: fontWeight("bold");
+		}
+		
+		.papaSupermarket-page--pages-search & {
+			display: inline-block;
+		}
+	}
+
+	.navBar-action {
+		padding-top: spacing("quarter");
+		padding-bottom: spacing("quarter");
+
+		color: $color-textLink;
+
+		&:hover {
+			color: $color-textLink-hover;
+		}
+
+		&:active {
+			color: $color-textLink-active;
+		}
+
+		@include breakpoint("medium") {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+	
+	// papathemes-beautyfeatures edited
+	.papaSupermarket-page--pages-search & {
+		text-align: left;
+
+		.navBar-item:first-child {
+			margin-left: 0;
+		}
+	}
+
+	// papathemes-beautyfeatures
+	@media (max-width: screenSize("medium") - 1px) {
+		text-align: left;
+		.navBar-item {
+			margin-left: 0;
+			margin-right: spacing("single");
+			&.is-active {
+				padding-top: spacing("quarter");
+				padding-bottom: spacing("quarter");
+			}
+		}
+	}
+}

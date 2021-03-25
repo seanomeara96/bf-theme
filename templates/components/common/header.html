@@ -1,0 +1,108 @@
+{{#or banners.top_metadata theme_settings.instantload}}
+<div class="banners" data-banner-location="top">
+    {{#if settings.data_tag_enabled}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                <div class="banner">
+                    {{{this.content}}}
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+</div>
+{{/or}}
+{{#if theme_settings.bannerAdvTopHeader '===' 'all'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAdvTopHeader"></div>
+{{else if theme_settings.bannerAdvTopHeader '===' 'nothome'}}
+    {{#if page_type '!==' 'default'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAdvTopHeader"></div>
+    {{/if}}
+{{/if}}
+<header class="header" role="banner" {{#if theme_settings.header_sticky}} data-sticky-header{{/if}}>
+
+    <div class="bf__topHeader glopal-hide">
+        <div class="container">
+            {{> components/beautyfeatures/header-top}}
+        </div>
+    </div>
+
+    <div class="bf__middleHeader">
+        <div class="container">
+            <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+                <span class="mobileMenu-toggleIcon"><span class="_icon"></span></span>
+                <span class="_label">Menu</span>
+            </a>
+
+            {{#if template_file '===' 'pages/home'}}
+                <h1 class="header-logo">
+                    {{> components/beautyfeatures/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo">
+                    {{> components/beautyfeatures/store-logo}}
+                </div>
+            {{/if}}
+
+            {{> components/common/quick-search}}
+
+            <ul class="navUser-section">
+                <li class="navUser-item navUser-item--cart">
+                    <a
+                        class="navUser-action navUser-action--cart"
+                        href="{{urls.cart}}"
+                        title="{{lang 'common.cart'}}">
+                        <svg class="icon"><use xlink:href="#icon-ih-bag-menu" /></svg>
+                        <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="navPages-container-overlay"></div>
+    <div class="navPages-container{{#if theme_settings.navPages_bg_stretch}} navPages-container--bg{{/if}}" id="menu" data-menu>
+        <div class="navPages-container-header">
+            <span class="_heading">Menu</span>
+            <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu"><span class="mobileMenu-toggleIcon"><span class="_icon"></span></span></a>
+        </div>
+        <div class="container" id="bf-fix-menu-mobile">
+            {{> components/beautyfeatures/navigation-menu}}
+        </div>
+    </div>
+
+</header>
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+    <div class="container">
+        <section class="quickSearchResults" data-bind="html: results"></section>
+    </div>
+</div>
+<div class="emthemesModez-overlay"></div>
+
+{{{region name="header_bottom"}}}
+
+{{#if theme_settings.bannerAfterHeader '===' 'all'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAfterHeader"></div>
+{{else if theme_settings.bannerAfterHeader '===' 'nothome'}}
+    {{#if page_type '!==' 'default'}}
+        <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAfterHeader"></div>
+    {{/if}}
+{{else if theme_settings.bannerAfterHeader '===' 'onlyhome'}}
+    {{#if banners.top_metadata}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlockAfterHeader') '!==' 0}}
+                {{{this.content}}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{/if}}
